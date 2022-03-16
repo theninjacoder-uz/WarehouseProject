@@ -13,6 +13,7 @@ import uz.pdp.warehouseproject.response.ApiResponse;
 import uz.pdp.warehouseproject.service.base.BaseService;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static uz.pdp.warehouseproject.consts.BaseConstants.EDIT;
 import static uz.pdp.warehouseproject.consts.BaseConstants.SAVED;
@@ -45,8 +46,8 @@ public class InputService implements BaseService<InputReceiveDto, Input> {
         mappedInput.setCurrency(currency);
         mappedInput.setWarehouse(warehouse);
         mappedInput.setSupplier(supplier);
-        mappedInput.setCode("1");
-        mappedInput.setFactureNumber("123");
+        mappedInput.setCode(UUID.randomUUID().toString());
+        mappedInput.setFactureNumber(UUID.randomUUID().toString());
 
         return new ApiResponse(1, SAVED, mappedInput);
     }

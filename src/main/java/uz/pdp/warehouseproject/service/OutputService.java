@@ -12,6 +12,7 @@ import uz.pdp.warehouseproject.service.base.BaseService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static uz.pdp.warehouseproject.consts.BaseConstants.EDIT;
 import static uz.pdp.warehouseproject.consts.BaseConstants.SAVED;
@@ -38,11 +39,11 @@ public class OutputService implements BaseService<OutputReceiveDto, Output> {
             return new ApiResponse(4, "Warehouse not found", null);
 
         Output output = new Output();
-        output.setCode(item.getCode());
         output.setCurrency(currency);
         output.setWarehouse(warehouse);
         output.setClient(item.getClient());
-        output.setFactureNumber(item.getFactureNumber());
+        output.setCode(UUID.randomUUID().toString());
+        output.setFactureNumber(UUID.randomUUID().toString());
 
         return new ApiResponse(1, SAVED, outputRepository.save(output));
     }
@@ -63,11 +64,9 @@ public class OutputService implements BaseService<OutputReceiveDto, Output> {
         if (warehouse == null)
             return new ApiResponse(4, "Warehouse not found", null);
 
-        output.setCode(item.getCode());
         output.setCurrency(currency);
         output.setWarehouse(warehouse);
         output.setClient(item.getClient());
-        output.setFactureNumber(item.getFactureNumber());
 
         return new ApiResponse(1, EDIT, outputRepository.save(output));
     }

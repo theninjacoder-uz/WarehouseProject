@@ -15,10 +15,6 @@ public class OutputReceiveDto {
     @NotBlank
     private int currencyId;
 
-    private String factureNumber;
-
-    private String code;
-
     private Client client;
 
 }
